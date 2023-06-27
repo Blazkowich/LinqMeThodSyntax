@@ -23,9 +23,14 @@ namespace ternaryoperator
 
             Employees.DisplayWithAppraisal(listOfEmployees, "All Employees");
 
-            //This Or Next
+            
+
+            //This Or Next FilteredList
             //IEnumerable<Employees> list = listOfEmployees.Where(e=>e.Salary>=6000 && e.Age > 40)
-            filteredList = listOfEmployees.Where(e => e.Salary >= 6000 && e.Age > 40).ToList();
+            filteredList = listOfEmployees.Where(e => e.Salary > 4000 && e.Appraisal[0] < 8).ToList();
+
+            Employees.DisplayWithAppraisal(filteredList, "Last appraisal less than 8 " +
+                "and salary greater than 4000");
 
 
 
