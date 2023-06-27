@@ -25,10 +25,13 @@ namespace ternaryoperator
 
 
 
-            //This Or Next FilteredList
+            //Enumerable Syntax
             //IEnumerable<Employees> list = listOfEmployees.Where(e=>e.Salary>=6000 && e.Age > 40)
+
+            //Method Syntax
             //filteredList = listOfEmployees.Where(e => e.Salary > 4000 && e.Appraisal[0] < 8).ToList();
 
+            //Query Syntax
             filteredList = (from emp in listOfEmployees
                             where emp.Salary >= 4000 && emp.Appraisal[0] < 8
                             select emp).ToList();
