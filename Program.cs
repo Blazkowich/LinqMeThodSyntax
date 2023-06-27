@@ -13,7 +13,7 @@ namespace ternaryoperator
                 Appraisal = new List<int>{7,7,8,9,7 } },
 
                 new Employees {EmployeeID=1151, FirstName="Goga",
-                LastName="Talakhadze", Salary=6000m, Age=37,
+                LastName="Talakhadze", Salary=6000m, Age=26,
                 Appraisal = new List<int>{9,9,8,9,8 } },
 
                 new Employees {EmployeeID=1152, FirstName="Vaja",
@@ -32,24 +32,39 @@ namespace ternaryoperator
             //filteredList = listOfEmployees.Where(e => e.Salary > 4000 && e.Appraisal[0] < 8).ToList();
 
             //Query Syntax
-            filteredList = (from emp in listOfEmployees
-                            where emp.Salary >= 4000 && emp.Appraisal[0] < 8
-                            select emp).ToList();
+            //filteredList = (from emp in listOfEmployees
+            //                where emp.Salary >= 4000 && emp.Appraisal[0] < 8
+            //                select emp).ToList();
 
-            Employees.DisplayWithAppraisal(filteredList, "Last appraisal less than 8 " +
-                "and salary greater than 4000");
+            //Sorting Syntax
+            //filteredList = (from emp in listOfEmployees
+            //                orderby emp.Salary descending, emp.Age descending
+            //                select emp).ToList();
+
+            
+
+            Employees.DisplayWithAppraisal(SortEmployees(listOfEmployees), "Sorted List");
+            Employees.DisplayWithAppraisal(FilterList(listOfEmployees), "Filtered List");
+
+        }
 
 
+        //Queries With Methods
+        public static List<Employees> SortEmployees(List<Employees> employees)
+        {
+            var list = from emp in employees
+                       orderby emp.Age descending
+                       select emp;
+            return list.ToList();
+        }
 
-            foreach (var employee in filteredList)
-            {
-
-                Console.WriteLine(employee.FirstName);
-
-
-            }
-            Console.WriteLine();
-
+        //Filter With Methods
+        public static List<Employees> FilterList(List<Employees> employees)
+        {
+            var list = from emp in employees
+                       where emp.Salary >= 6000
+                       select emp;
+            return list.ToList();
         }
     }
 }
